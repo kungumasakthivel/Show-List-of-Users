@@ -11,3 +11,16 @@ ul {
 th, td {
   border-color: black;
 }
+
+@media (max-width: 768px) {
+  th {
+    padding: 0px !important;
+  }
+  td {
+    padding: 0px !important;
+  }
+  th, td {
+    min-width: 60px;
+    max-width: 200px;
+  }
+}
