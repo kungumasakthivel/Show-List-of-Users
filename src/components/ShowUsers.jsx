@@ -11,7 +11,7 @@ const ShowUsers = () => {
     dispatch(fetchData());
   }, [dispatch]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="text-3xl font-bold h-dvh mt-20 flex flex-col text-center">Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
