@@ -18,7 +18,7 @@ const UserDetails = () => {
       }
 
   return (
-    <div className="w-full flex flex-col items-center mt-3">
+    <div className="w-full flex flex-col items-center mt-3 md:text-sm pl-1 pr-1">
       <h1 className="font-bold text-3xl">User Details</h1>
       <table className="table-auto mt-5">
         <thead>
