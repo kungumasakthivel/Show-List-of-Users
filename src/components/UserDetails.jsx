@@ -1,13 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 // import { fetchData } from "../redux/dataSlicer.jsx";
 // import { useEffect } from 'react';
 
 const UserDetails = () => {
     const { id } = useParams();
+    const nav = useNavigate()
 
     //   const dispatch = useDispatch();
       const data = useSelector((state) => state.data.data);
+      const goBack = () => {
+        nav("/")
+      }
 
       let user
       for(let i=0;i<data.length;i++) {
@@ -19,7 +23,13 @@ const UserDetails = () => {
 
   return (
     <div className="w-full flex flex-col items-center mt-3 md:text-sm pl-1 pr-1">
-      <h1 className="font-bold text-3xl">User Details</h1>
+        <button onClick={goBack} 
+              className="bg-black text-white rounded px-4 py-2 back-btn">
+                Back
+        </button>
+        <div>
+            <h1 className="font-bold text-3xl">User Details</h1>
+        </div>
       <table className="table-auto mt-5">
         <thead>
             <tr>
