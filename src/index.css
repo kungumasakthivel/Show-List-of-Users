@@ -20,7 +20,12 @@ th, td {
     padding: 0px !important;
   }
   th, td {
-    min-width: 60px;
-    max-width: 200px;
+    width: 200px;
+  }
+}
+
+@media (min-width: 769px) {
+  th, td {
+    width: 200px;
   }
 }

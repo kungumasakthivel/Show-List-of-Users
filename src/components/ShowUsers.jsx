@@ -1,11 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/dataSlicer.jsx";
 import { Link } from 'react-router-dom';
 
 const ShowUsers = () => {
   const dispatch = useDispatch();
-  const { data, isLoading, error } = useSelector((state) => state.data);
+  let { data, isLoading, error } = useSelector((state) => state.data);
+
+  const [search, setSearch] = useState('');
+  let users = data 
+  let sData;
+  
+  if (search.length == 0) {
+    sData = data;
+  } else if (search.length > 0) {
+    sData = data.filter(user => {
+      if (user.name.includes(search)) {
+        return user;
+      }
+    })
+    console.log(data)
+  }
+  users = sData
 
   useEffect(() => {
     dispatch(fetchData());
@@ -17,6 +33,15 @@ const ShowUsers = () => {
   return (
     <div className="w-full flex flex-col items-center mt-3 md:text-sm pl-1 pr-1">
       <h1 className="font-bold text-3xl">Users</h1>
+      <div className='w-full flex justify-center items-center mt-3'>
+        <input 
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border-2 px-4 py-2 rounded-xl w-2/12 max-sm:w-6/12"
+        />
+      </div>
       <table className="table-auto mt-5">
         <thead>
             <tr>
@@ -26,7 +51,7 @@ const ShowUsers = () => {
             </tr>
         </thead>
         <tbody>
-            {data.map((user) => (          
+            {users.map((user) => (          
               <tr key={user.id}>
                   <td className="border-2 px-4 py-2">
                     <Link to={`/user/${user.id}`}>{user.name}</Link>
